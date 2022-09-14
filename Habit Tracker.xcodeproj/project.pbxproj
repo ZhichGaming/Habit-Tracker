@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8D1BAE28D0EC22006185EB /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D1BAD28D0EC22006185EB /* ActivityView.swift */; };
 		9BE4250028CE79B6001492F4 /* Habit_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE424FF28CE79B6001492F4 /* Habit_TrackerApp.swift */; };
 		9BE4250228CE79B6001492F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4250128CE79B6001492F4 /* ContentView.swift */; };
 		9BE4250428CE79BA001492F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BE4250328CE79BA001492F4 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B8D1BAD28D0EC22006185EB /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		9BE424FC28CE79B6001492F4 /* Habit Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BE424FF28CE79B6001492F4 /* Habit_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_TrackerApp.swift; sourceTree = "<group>"; };
 		9BE4250128CE79B6001492F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			children = (
 				9BE424FF28CE79B6001492F4 /* Habit_TrackerApp.swift */,
 				9BE4250128CE79B6001492F4 /* ContentView.swift */,
+				9B8D1BAD28D0EC22006185EB /* ActivityView.swift */,
 				9BE4250F28CEC6CA001492F4 /* AddHabitView.swift */,
 				9BE4250D28CE7CCE001492F4 /* Activity.swift */,
 				9BE4251128CECB65001492F4 /* Activities.swift */,
@@ -151,6 +154,7 @@
 				9BE4250228CE79B6001492F4 /* ContentView.swift in Sources */,
 				9BE4251228CECB65001492F4 /* Activities.swift in Sources */,
 				9BE4250028CE79B6001492F4 /* Habit_TrackerApp.swift in Sources */,
+				9B8D1BAE28D0EC22006185EB /* ActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

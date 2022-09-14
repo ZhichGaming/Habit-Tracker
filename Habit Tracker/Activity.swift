@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Activity: Codable, Identifiable {
+struct Activity: Codable, Identifiable, Equatable {
     var id = UUID()
     var name: String
     var description: String
+    
     var type: String
     var customType: String {
         didSet {
@@ -18,5 +19,12 @@ struct Activity: Codable, Identifiable {
                 customType = ""
             }
         }
+    }
+    
+    var completions = [Date]()
+
+    var dateLastUpdated: Date?
+    var formattedDate: String {
+        dateLastUpdated?.formatted(date: .abbreviated, time: .shortened) ?? "Never"
     }
 }

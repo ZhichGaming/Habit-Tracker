@@ -18,8 +18,19 @@ struct ContentView: View {
                 List {
                     if !activities.activities.isEmpty {
                         ForEach(activities.activities) { activity in
-                            NavigationLink(activity.name) {
-                                Text("Activity")
+                            NavigationLink {
+                                ActivityView(activities: activities, activity: activity)
+                            } label: {
+                                HStack(spacing: 0){
+                                    VStack(alignment: .leading) {
+                                        Text(activity.name)
+                                            .font(.headline)
+                                        Text("Last completed: \(activity.formattedDate)")
+                                            .foregroundColor(.secondary)
+                                    }
+                                    Spacer()
+                                    Text(activity.type == "Other" ? activity.customType : activity.type)
+                                }
                             }
                         }
                     } else {
