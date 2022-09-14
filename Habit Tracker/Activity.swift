@@ -27,6 +27,7 @@ struct Activity: Codable, Identifiable, Equatable {
         if completions.isEmpty {
             return "Never"
         }
+        
         return completions[0].formatted(date: .abbreviated, time: .shortened)
     }
 }

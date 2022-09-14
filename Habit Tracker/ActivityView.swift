@@ -80,7 +80,7 @@ struct ActivityView: View {
                         Button() {
                             var index: Int {
                                 for i in 0..<activities.activities.count {
-                                    if activities.activities[i] == activity {
+                                    if activities.activities[i].id == activity.id {
                                         return i
                                     }
                                 }
