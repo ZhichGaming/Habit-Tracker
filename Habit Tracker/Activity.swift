@@ -23,8 +23,10 @@ struct Activity: Codable, Identifiable, Equatable {
     
     var completions = [Date]()
 
-    var dateLastUpdated: Date?
     var formattedDate: String {
-        dateLastUpdated?.formatted(date: .abbreviated, time: .shortened) ?? "Never"
+        if completions.isEmpty {
+            return "Never"
+        }
+        return completions[0].formatted(date: .abbreviated, time: .shortened)
     }
 }

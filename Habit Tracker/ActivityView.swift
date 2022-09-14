@@ -7,38 +7,6 @@
 
 import SwiftUI
 
-struct LineView: View {
-  var dataPoints: [Double]
-
-  var highestPoint: Double {
-    let max = dataPoints.max() ?? 1.0
-    if max == 0 { return 1.0 }
-    return max
-  }
-
-  var body: some View {
-    GeometryReader { geometry in
-      let height = geometry.size.height
-      let width = geometry.size.width
-
-      Path { path in
-        path.move(to: CGPoint(x: 0, y: height * self.ratio(for: 0)))
-
-        for index in 1..<dataPoints.count {
-          path.addLine(to: CGPoint(
-            x: CGFloat(index) * width / CGFloat(dataPoints.count - 1),
-            y: height * self.ratio(for: index)))
-        }
-      }
-      .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineJoin: .round))
-    }
-    .padding(.vertical)
-  }
-
-  private func ratio(for index: Int) -> Double {
-    1 - (dataPoints[index] / highestPoint)
-  }
-}
 
 struct ActivityView: View {
     @ObservedObject var activities: Activities
@@ -103,35 +71,40 @@ struct ActivityView: View {
                     }
                 }
                 .animation(.default, value: activity.completions.isEmpty)
-            }
-            .overlay(
                 VStack {
                     Spacer()
-                    Button() {
-                        var index: Int {
-                            for i in 0..<activities.activities.count {
-                                if activities.activities[i] == activity {
-                                    return i
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.white)
+
+                        Button() {
+                            var index: Int {
+                                for i in 0..<activities.activities.count {
+                                    if activities.activities[i] == activity {
+                                        return i
+                                    }
                                 }
+                                return 0
                             }
-                            return 0
+                            
+                            withAnimation {
+                                activity.completions.insert(Date.now, at: 0)
+                                activities.activities[index].completions.insert(Date.now, at: 0)
+                            }
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                Text("Complete")
+                                    .foregroundColor(.white)
+                            }
                         }
-                        
-                        withAnimation {
-                            activity.completions.insert(Date.now, at: 0)
-                            activities.activities[index].completions.insert(Date.now, at: 0)
-                        }
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                            Text("Complete")
-                                .foregroundColor(.white)
-                        }
+                        .frame(maxHeight: 60)
+                        .padding()
                     }
-                    .frame(maxHeight: 60)
                 }
-                .padding()
-            )
+                .ignoresSafeArea()
+                .frame(maxHeight: 100)
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -144,8 +117,9 @@ struct ActivityView: View {
 struct ActivityView_Previews: PreviewProvider {
 
     static var previews: some View {
-        let activity = Activity(name: "Name", description: "A totaly 100% pure normal test. ", type: "Other", customType: "Type", dateLastUpdated: Date.now)
+        let activity = Activity(name: "Name", description: "A totaly 100% pure normal test. ", type: "Other", customType: "Type")
+        let activities = Activities()
 
-        ActivityView(activities: Activities(), activity: activity)
+        ActivityView(activities: activities, activity: activity)
     }
 }

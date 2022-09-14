@@ -40,7 +40,7 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(maxWidth: 0.25 * geo.size.width)
                                 .symbolRenderingMode(.palette)
-                                .foregroundStyle(.black, .orange)
+                                .foregroundStyle(.black, .blue)
                                 .padding()
                             
                             Text("Welcome to Habit Tracker! Add activities with the button on the top right corner to get started.")
