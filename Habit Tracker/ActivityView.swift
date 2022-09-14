@@ -75,7 +75,7 @@ struct ActivityView: View {
                                     HStack {
                                         Text("\(completion.formatted(date: .abbreviated, time: .shortened))")
                                         Spacer()
-                                        Text("#\(1 + activity.completions.firstIndex(of: completion)!)")
+                                        Text("#\(activity.completions.count - activity.completions.firstIndex(of: completion)!)")
                                             .foregroundColor(.secondary)
                                     }
                                 }
@@ -118,8 +118,8 @@ struct ActivityView: View {
                         }
                         
                         withAnimation {
-                            activity.completions.append(Date.now)
-                            activities.activities[index].completions.append(Date.now)
+                            activity.completions.insert(Date.now, at: 0)
+                            activities.activities[index].completions.insert(Date.now, at: 0)
                         }
                     } label: {
                         ZStack {
